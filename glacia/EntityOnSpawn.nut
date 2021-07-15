@@ -4,6 +4,7 @@ function PreSpawnInstance(entityClass, entityName) {
     };
 
     //do nothing
+    //test changes
     return keyvalues
 }
 
