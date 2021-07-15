@@ -125,6 +125,7 @@ class TerrainNode {
         setRightFinished(true);
     }
 
+//need a overload function starter first here so i can just pass in numbers;
     function checkCliffHeight(number, cliff_left, cliff_right) {
         local entity = null;
         //left
@@ -189,6 +190,7 @@ class TerrainNode {
         }
     }
 
+//delete cliff need to be redone for different path
     function deleteAll(cliff_number) {
         foreach(entity in getEntityList()) { //z-axis only
             getLogger().push("Executed deleteAll on the selected Node");
