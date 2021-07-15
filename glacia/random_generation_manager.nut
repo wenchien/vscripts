@@ -54,6 +54,14 @@ SNOW_ROCK_1 <- "models/snow_tree/snow_tree_1.mdl";
 SNOW_CLIFF_1 <- "models/cliff/cliff_side_1.mdl";
 
 
+//Const Strings for cliffs
+CLIFF_STRAIGHT_LEFT <- "cliff_straight_left";
+CLIFF_STRAIGHT_RIGHT <- "cliff_straight_right";
+CLIFF_RTURN_LEFT <- "cliff_rturn_left";
+CLIFF_RTURN_RIGHT <- "cliff_rturn_right";
+CLIFF_LTURN_LEFT <- "cliff_lturn_left";
+CLIFF_LTURN_RIGHT <- "cliff_lturn_right";
+
 //Called this first
 function onInit() {
     startLogger();
