@@ -28,7 +28,7 @@ class TerrainNode {
             case PATH_STATE.STRAIGHT:
                     generateEntitiesWithinKeshikiRange(spawner, node_range_x, node_range_y, range_x, range_y, prop_orientation);
                 break;
-            case PATH_STATE.RIGHT_TURN: 
+            case PATH_STATE.RIGHT_TURN:
                 break;
             case PATH_STATE.LEFT_TURN:
                 break;
@@ -125,28 +125,28 @@ class TerrainNode {
         setRightFinished(true);
     }
 
-    function checkCliffHeight(number) {
+    function checkCliffHeight(number, cliff_left, cliff_right) {
         local entity = null;
         //left
-        while (entity = Entities.FindByName(entity, "cliff_left")) {
+        while (entity = Entities.FindByName(entity, cliff_left)) {
             //Changes its targetname
             entity.__KeyValueFromString("targetname", entity.GetName()+"_"+number);
         }
 
         entity = null;
         //right
-        while (entity = Entities.FindByName(entity, "cliff_right")) {
+        while (entity = Entities.FindByName(entity, cliff_right)) {
             //Changes its targetname
             entity.__KeyValueFromString("targetname", entity.GetName()+"_"+number);
         }
         //set cliff heights here, need a way to identify cliffs from which node
         if (getLeftHighLowGround() == 0) {
             getLogger().push("Detecting low grounds settings. Setting the LEFT cliff to low");
-            setCliffToLowHeight("cliff_left_" + number);
+            setCliffToLowHeight(cliff_left + "_" + number);
         }
         if (getRightHighLowGround() == 0) {
             getLogger().push("Detecting low grounds settings. Setting the RIGHT cliff to low");
-            setCliffToLowHeight("cliff_right_" + number);
+            setCliffToLowHeight(cliff_right + "_" + number);
         }
     }
 
