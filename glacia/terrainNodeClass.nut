@@ -24,7 +24,7 @@ class TerrainNode {
         m_logger = getroottable()["LOGGER"];
     }
 
-    //TO-DO
+    //TO-DO maybe deprecated
     function defineKeshikiSpawningRule(spawn_parameter, spawner, node_range_x, node_range_y, range_x, range_y, prop_orientation) {
         switch (spawn_parameter) {
             case PATH_STATE.STRAIGHT:

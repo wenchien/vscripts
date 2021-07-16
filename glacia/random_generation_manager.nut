@@ -77,11 +77,11 @@ function onFinishedInit() {
     node_1.setExtraTree(8);
     CURRENT_NODE_PTR = 1;
     //Call defineKeshikiSpawningRule() instead
+    node_1.checkCliffHeight(CURRENT_NODE_PTR);
     node_1.generateEntitiesWithinKeshikiRange(entities_spawner, node_area_1_range_x, node_area_1_range_y, KESHIKI_RANGE_X, KESHIKI_RANGE_Y, DEFAULT_ORIENTATION);
     node_1.adjustPropDynamicModelScaleAll(SNOW_TREE_1, 1.00, 3.00);
     node_1.adjustPropDynamicRandOrientation(SNOW_TREE_1);
-    node_1.checkCliffHeight(CURRENT_NODE_PTR);
-    printl(node_1.getEntityList());
+
     TERRAIN_NODES.push(node_1);
     TEMP_NODES.clear();
     LOGGER.push("End OnInit....Current Node: " + CURRENT_NODE_PTR);
