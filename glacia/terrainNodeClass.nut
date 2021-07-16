@@ -17,6 +17,8 @@ class TerrainNode {
         m_pathState = pathState;
         m_keshikiState = keishiState;
         m_entities = [];
+        m_left_cliff = "";
+        m_right_cliff = "";
         m_extraTreeCount = RandomInt(5, 8);
         m_extraBoulderCount = boulderCount;
         m_leftHighLowGround = RandomInt(0, 1);

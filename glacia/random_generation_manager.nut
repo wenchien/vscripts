@@ -135,6 +135,8 @@ function setUpNextNode() {
     //Call defineKeshikiSpawningRule() instead, set up all the landscape related stuff
     LOGGER.push("Called setUpNextNode...Setting up the scenery");
     local node = TEMP_NODES[0];
+    node.checkCliffHeight(CURRENT_NODE_PTR);
+
     switch (CURRENT_NODE_PTR) {
         case 1 : node.generateEntitiesWithinKeshikiRange(entities_spawner, node_area_1_range_x, node_area_1_range_y, KESHIKI_RANGE_X, KESHIKI_RANGE_Y, DEFAULT_ORIENTATION);
                 break;
@@ -143,7 +145,7 @@ function setUpNextNode() {
         case 3 : node.generateEntitiesWithinKeshikiRange(entities_spawner, node_area_3_range_x, node_area_3_range_y, KESHIKI_RANGE_X, KESHIKI_RANGE_Y, DEFAULT_ORIENTATION);
                 break;
     }
-    node.checkCliffHeight(CURRENT_NODE_PTR);
+
     node.adjustPropDynamicModelScaleAll(SNOW_TREE_1, 1.00, 3.00);
     node.adjustPropDynamicRandOrientation(SNOW_TREE_1);
 
