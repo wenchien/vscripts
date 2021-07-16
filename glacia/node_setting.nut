@@ -1,4 +1,4 @@
-IncludeScript("terrainNodeClass", null);
+IncludeScript("glacia/terrainNodeClass", null);
 
 function PreSpawnInstance(entityClass, entityName) {
     local keyvalues = {

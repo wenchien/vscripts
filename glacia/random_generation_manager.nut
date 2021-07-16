@@ -1,9 +1,9 @@
 //Logging utilities
 ::LOGGER <- ["Started Logging...."];
-IncludeScript("node_setting", null);
-IncludeScript("terrainNodeClass", null);
-IncludeScript("keshikiType", null);
-IncludeScript("EntityOnSpawn", null)
+IncludeScript("glacia/node_setting", null);
+IncludeScript("glacia/terrainNodeClass", null);
+IncludeScript("glacia/keshikiType", null);
+IncludeScript("glacia/EntityOnSpawn", null)
 //Reponsible for distributing logic to nodes
 //as well as manage main logic of random path generation
 

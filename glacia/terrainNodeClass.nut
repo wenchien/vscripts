@@ -1,4 +1,4 @@
-IncludeScript("keshikiType", null);
+IncludeScript("glacia/keshikiType", null);
 class TerrainNode {
     m_pathState = PATH_STATE.STRAIGHT;
     m_keshikiState = KESHIKI.STRAIGHT;
