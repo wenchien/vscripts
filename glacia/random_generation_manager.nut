@@ -143,12 +143,12 @@ function setUpNextNode() {
         case 3 : node.generateEntitiesWithinKeshikiRange(entities_spawner, node_area_3_range_x, node_area_3_range_y, KESHIKI_RANGE_X, KESHIKI_RANGE_Y, DEFAULT_ORIENTATION);
                 break;
     }
-
+    node.checkCliffHeight(CURRENT_NODE_PTR);
     node.adjustPropDynamicModelScaleAll(SNOW_TREE_1, 1.00, 3.00);
     node.adjustPropDynamicRandOrientation(SNOW_TREE_1);
-    node.checkCliffHeight(CURRENT_NODE_PTR);
-    printl(node.getEntityList());
-    debugArray(node.getEntityList());
+
+    //printl(node.getEntityList());
+    //debugArray(node.getEntityList());
     TERRAIN_NODES.push(node);
     TEMP_NODES.clear();
 }

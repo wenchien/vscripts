@@ -4,6 +4,8 @@ class TerrainNode {
     m_keshikiState = KESHIKI.STRAIGHT;
     m_leftHighLowGround = 0;
     m_rightHighLowGround = 0;
+    m_left_cliff = "";
+    m_right_cliff = "";
     m_entities = null;
     m_extraTreeCount = 1;
     m_extraBoulderCount = 1;
@@ -125,8 +127,19 @@ class TerrainNode {
         setRightFinished(true);
     }
 
+    function checkCliffHeight(number) {
+        switch(getPathState()) {
+            case PATH_STATE.STRAIGHT : checkCliffHeight01(number, "cliff_straight_left", "cliff_straight_right");
+                break;
+            case PATH_STATE.RIGHT_TURN : checkCliffHeight01(number, "cliff_rturn_left", "cliff_rturn_right");
+                break;
+            case PATH_STATE.LEFT_TURN : checkCliffHeight01(number, "cliff_lturn_left", "cliff_lturn_right");
+                break;
+        }
+    }
+
 //need a overload function starter first here so i can just pass in numbers;
-    function checkCliffHeight(number, cliff_left, cliff_right) {
+    function checkCliffHeight01(number, cliff_left, cliff_right) {
         local entity = null;
         //left
         while (entity = Entities.FindByName(entity, cliff_left)) {
@@ -193,16 +206,33 @@ class TerrainNode {
 //delete cliff need to be redone for different path
     function deleteAll(cliff_number) {
         foreach(entity in getEntityList()) { //z-axis only
-            getLogger().push("Executed deleteAll on the selected Node");
-            EntFireByHandle(entity, "Kill", "", 0.00, null, null);
+            if (entity.IsValid() && entity != null) {
+                getLogger().push("Executed deleteAll on the selected Node");
+                EntFireByHandle(entity, "Kill", "", 0.00, null, null);
+            }
+
+        }
+        deleteCliff(cliff_number);
+    }
+
+    function deleteCliff(cliff_number) {
+        local cliff_left;
+        local cliff_right;
+        switch(getPathState()) {
+            case PATH_STATE.STRAIGHT : cliff_left = "cliff_straight_left"; cliff_right = "cliff_straight_right";
+                break;
+            case PATH_STATE.RIGHT_TURN : cliff_left = "cliff_rturn_left"; cliff_right = "cliff_rturn_right";
+                break;
+            case PATH_STATE.LEFT_TURN : cliff_left = "cliff_lturn_left"; cliff_right = "cliff_lturn_right";
+                break;
         }
         local entity = null;
-        while (entity = Entities.FindByName(entity, "cliff_right_" + cliff_number)) {
+        while (entity = Entities.FindByName(entity, cliff_left + "_" + cliff_number)) {
             //Changes its targetname
             entity.Destroy();
         }
         entity = null;
-        while (entity = Entities.FindByName(entity, "cliff_left_" + cliff_number)) {
+        while (entity = Entities.FindByName(entity, cliff_right + "_" + cliff_number)) {
             //Changes its targetname
             entity.Destroy();
         }
@@ -244,6 +274,22 @@ class TerrainNode {
 
     function getPathState() {
         return m_pathState;
+    }
+
+    function getLeftCliff() {
+        return m_left_cliff;
+    }
+
+    function setLeftCliff(value) {
+        m_left_cliff = value;
+    }
+
+    function getRightCliff() {
+        return m_right_cliff;
+    }
+
+    function setRightCliff(value) {
+        m_right_cliff = value;
     }
 
     function setExtraTree(value) {
