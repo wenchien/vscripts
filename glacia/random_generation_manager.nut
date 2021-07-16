@@ -11,6 +11,7 @@ IncludeScript("EntityOnSpawn", null)
 //Temp variables
 ::TEMP_NODES <- []; //all newly created nodes are stored heres
 ::TEMP_ENTITY_LIST <- []; //for extra tree and boulder
+TEMP_PATH_STATE <- null;
 
 // All currently running nodes related
 ::TERRAIN_NODES <- [];
@@ -101,17 +102,29 @@ function prepareNextNode() {
 
 function spawnNextNode(number) {
     LOGGER.push("Called spawnNextNode....initializing");
+    local randomPathType = RandomInt(0, 2);
+    TEMP_PATH_STATE = randomPathType;
+    //determine path type here
+    switch(randomPathType) {
+        case 0 :
+                setTemplateByHandle(node_spawner_1, "flat_ground_template");
+                break;
+        case 1 :
+                setTemplateByHandle(node_spawner_2, "turn_right_template");
+                break;
+        case 2 :
+                setTemplateByHandle(node_spawner_3, "turn_left_template");
+                break;
+    }
+
     switch(number) {
         case 1 :  setTemplateByHandle(entities_spawner, "tree_template");
-                setTemplateByHandle(node_spawner_1, "flat_ground_template");
                 EntFireByHandle(node_spawner_1, "ForceSpawn", "", 0.00, null, null);
                 break;
         case 2 :  setTemplateByHandle(entities_spawner, "tree_template");
-                setTemplateByHandle(node_spawner_2, "flat_ground_template");
                 EntFireByHandle(node_spawner_2, "ForceSpawn", "", 0.00, null, null);
                 break;
         case 3 :  setTemplateByHandle(entities_spawner, "tree_template");
-                setTemplateByHandle(node_spawner_3, "flat_ground_template");
                 EntFireByHandle(node_spawner_3, "ForceSpawn", "", 0.00, null, null);
                 break;
     }
@@ -122,7 +135,6 @@ function setUpNextNode() {
     //Call defineKeshikiSpawningRule() instead, set up all the landscape related stuff
     LOGGER.push("Called setUpNextNode...Setting up the scenery");
     local node = TEMP_NODES[0];
-    //node.setExtraTree(RandomInt(4, 8));
     switch (CURRENT_NODE_PTR) {
         case 1 : node.generateEntitiesWithinKeshikiRange(entities_spawner, node_area_1_range_x, node_area_1_range_y, KESHIKI_RANGE_X, KESHIKI_RANGE_Y, DEFAULT_ORIENTATION);
                 break;

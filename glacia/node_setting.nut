@@ -14,7 +14,16 @@ function PostSpawn(entities) {
     foreach(targetname, handle in entities) {
         if (NODE_CLASS == null) {
             rootTable["LOGGER"].push("Creating a new node...");
-            NODE_CLASS = TerrainNode(PATH_STATE.STRAIGHT, KESHIKI.STRAIGHT, 1, 1);
+            local randomPathType = RandomInt(0, 2);
+            switch(randomPathType) {
+                case 0 : NODE_CLASS = TerrainNode(PATH_STATE.STRAIGHT, KESHIKI.STRAIGHT, 1, 1);
+                        break;
+                case 1 : NODE_CLASS = TerrainNode(PATH_STATE.RIGHT_TURN, KESHIKI.STRAIGHT, 1, 1);
+                        break;
+                case 2 : NODE_CLASS = TerrainNode(PATH_STATE.LEFT_TURN, KESHIKI.STRAIGHT, 1, 1);
+                        break;
+            }
+
         }
         rootTable["LOGGER"].push("Adding the following - Handle: " + handle + " w/ targetname of: " + targetname);
         NODE_CLASS.addEntityList(handle);
