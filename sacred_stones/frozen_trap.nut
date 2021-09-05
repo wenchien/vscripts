@@ -1,3 +1,3 @@
 function initialize() {
-    
+    printl();
 }
